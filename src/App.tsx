@@ -2,12 +2,14 @@ import React from "react";
 import { getHours, getMinutes } from "date-fns";
 import { Stage, Group, Layer } from "react-konva";
 import useWindowDimensions from "./useWindowDimensions";
+import useCustomCursor from "./useCustomCursor";
 import useTime from "./useTime";
 import Num from "./Num";
 
 const App: React.FC = () => {
-  const currentTime = useTime(250);
+  const currentTime = useTime(500);
   const { height, width } = useWindowDimensions();
+  useCustomCursor();
 
   const isDesktop = width > 720;
 

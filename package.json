@@ -2,9 +2,11 @@
   "name": "clockio",
   "version": "1.0.0",
   "private": false,
+  "license": "MIT",
   "dependencies": {
     "date-fns": "^2.22.1",
     "konva": "^8.0.2",
+    "kursor": "^0.1.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-konva": "^17.0.2-4",
