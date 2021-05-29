@@ -1,8 +1,38 @@
 import React from "react";
 import { Group, Circle, Line } from "react-konva";
-import { useSpring } from "react-spring";
 
-const degToRadians = (degrees: number) => (degrees * Math.PI) / 180;
+interface ClockLineProps {
+  x?: number;
+  y?: number;
+  radius?: number;
+  angle?: number;
+  stroke?: string;
+}
+const ClockLine: React.FC<ClockLineProps> = ({
+  x = 100,
+  y = 100,
+  radius = 50,
+  angle = 0,
+  stroke = "#fff",
+}) => {
+  const lineRef = React.useRef(null);
+
+  React.useEffect(() => {
+    lineRef.current?.to?.({
+      rotation: angle,
+    });
+  }, [angle]);
+
+  return (
+    <Line
+      x={x}
+      y={y}
+      stroke={stroke}
+      ref={lineRef}
+      points={[0, 0, radius, 0]}
+    />
+  );
+};
 
 interface ClockProps {
   x?: number;
@@ -19,33 +49,20 @@ const Clock: React.FC<ClockProps> = ({
   angle = [135, 135],
   stroke = "rgba(255, 255, 255, 0.25)",
   line = "#fff",
-}) => {
-  const radians = React.useMemo(() => angle.map(degToRadians), [angle]);
-  const animatedProps = useSpring({
-    angle: radians,
-  });
-
-  const angles = animatedProps.angle.get();
-
-  return (
-    <Group>
-      <Circle x={x} y={y} radius={radius} stroke={stroke} />
-      {angles.map((radians, i) => (
-        <Line
-          x={x}
-          y={y}
-          points={[
-            0,
-            0,
-            radius * Math.cos(radians),
-            radius * Math.sin(radians),
-          ]}
-          stroke={line}
-          key={i}
-        />
-      ))}
-    </Group>
-  );
-};
+}) => (
+  <Group>
+    <Circle x={x} y={y} radius={radius} stroke={stroke} />
+    {angle.map((radians, i) => (
+      <ClockLine
+        x={x}
+        y={y}
+        radius={radius}
+        angle={radians}
+        stroke={line}
+        key={i}
+      />
+    ))}
+  </Group>
+);
 
 export default Clock;

@@ -7,7 +7,7 @@ import useTime from "./useTime";
 import Num from "./Num";
 
 const App: React.FC = () => {
-  const currentTime = useTime(500);
+  const currentTime = useTime(1000);
   const { height, width } = useWindowDimensions();
   useCustomCursor();
 

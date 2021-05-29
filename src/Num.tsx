@@ -4,7 +4,7 @@ import Clock from "./Clock";
 
 const Left = 180;
 const Right = 0;
-const Top = 270;
+const Top = -90;
 const Bottom = 90;
 
 const TR = [Top, Right];
