@@ -1,10 +1,29 @@
 import React from "react";
+import styled from "@emotion/styled";
 import { getHours, getMinutes } from "date-fns";
 import { Stage, Group, Layer } from "react-konva";
 import useWindowDimensions from "./useWindowDimensions";
 import useCustomCursor from "./useCustomCursor";
+import GitHubLink from "./GitHubLink";
+import Actions from "./Actions";
 import useTime from "./useTime";
 import Num from "./Num";
+
+const Wrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & canvas {
+    max-width: 100%;
+    width: 100%;
+  }
+`;
 
 const App: React.FC = () => {
   const currentTime = useTime(1000);
@@ -22,7 +41,7 @@ const App: React.FC = () => {
   const minutes = getMinutes(currentTime);
 
   return (
-    <div className="wrapper">
+    <Wrapper>
       <Stage
         width={cellSize * 4 * (isDesktop ? 4 : 2)}
         height={cellSize * 6 * (isDesktop ? 1 : 2)}
@@ -41,7 +60,11 @@ const App: React.FC = () => {
           </Group>
         </Layer>
       </Stage>
-    </div>
+
+      <Actions>
+        <GitHubLink />
+      </Actions>
+    </Wrapper>
   );
 };
 

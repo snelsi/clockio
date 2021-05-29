@@ -4,6 +4,8 @@
   "private": false,
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "date-fns": "^2.22.1",
     "konva": "^8.0.2",
     "kursor": "^0.1.6",
